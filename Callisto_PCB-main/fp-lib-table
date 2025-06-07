@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name "launchbox")(type "KiCad")(uri "${KIPRJMOD}/Rocket PCB/Launchbox.pretty")(options "")(descr ""))
+)
