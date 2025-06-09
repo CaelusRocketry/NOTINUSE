@@ -1,0 +1,4 @@
+smbus2
+adafruit_bno055
+board
+pyserial
