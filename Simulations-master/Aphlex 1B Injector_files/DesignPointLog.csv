@@ -1,0 +1,12 @@
+﻿# 
+# This file contains the parameter values of the Design Points successfully updated by ANSYS Workbench.
+# Project name: Aphlex 1B Injector
+# Creation date: 03/30/2020 15:37:09
+# 
+# 03/30/2020 15:37:09
+# The parameters defined in the project are:
+# ,P1 - report-def-0-op [kg s^-1],P2 - report-def-1-op [Pa],P3 - report-def-2-op [m s^-1]
+# 
+# The following header line defines the name of the columns by reference to the parameters.
+Name,P1,P2,P3
+DP 0,-0.0076941252,1573217.5,0.13123176

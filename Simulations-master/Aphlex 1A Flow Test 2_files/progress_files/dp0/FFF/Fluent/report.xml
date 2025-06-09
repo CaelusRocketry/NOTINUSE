@@ -1,0 +1,201 @@
+<FluentXMLReport>
+<version>
+Fluent
+Version: axi, dp, dbns imp, DES, transient (axi, double precision, density-based implicit, Detached Eddy Simulation, transient)
+Release: 19.2.0
+Title: 
+</version>
+
+<Models>
+
+Models
+------
+
+   Model                        Settings                       
+   ---------------------------------------------------------
+   Space                        Axisymmetric                   
+   Time                         Unsteady, 2nd-Order Implicit   
+   Viscous                      Detached Eddy Simulation       
+   Heat Transfer                Enabled                        
+   Solidification and Melting   Disabled                       
+   Radiation                    None                           
+   Species                      Disabled                       
+   Coupled Dispersed Phase      Disabled                       
+   NOx Pollutants               Disabled                       
+   SOx Pollutants               Disabled                       
+   Soot                         Disabled                       
+   Mercury Pollutants           Disabled                       
+
+</Models>
+
+<MaterialProperties>
+Material Properties
+-------------------
+
+   Material: air (fluid)
+
+      Property                        Units     Method      Value(s)     
+      ----------------------------------------------------------------
+      Density                         kg/m3     ideal-gas   #f           
+      Cp (Specific Heat)              j/kg-k    constant    1006.43      
+      Thermal Conductivity            w/m-k     constant    0.0242       
+      Viscosity                       kg/m-s    constant    1.7894e-05   
+      Molecular Weight                kg/kmol   constant    17.176       
+      Thermal Expansion Coefficient   1/k       constant    0            
+      Speed of Sound                  m/s       none        #f           
+
+   Material: aluminum (solid)
+
+      Property               Units    Method     Value(s)   
+      ---------------------------------------------------
+      Density                kg/m3    constant   2719       
+      Cp (Specific Heat)     j/kg-k   constant   871        
+      Thermal Conductivity   w/m-k    constant   202.4      
+
+</MaterialProperties>
+
+<CellZoneConditions>
+Cell Zone Conditions
+--------------------
+
+   Zones
+
+      name                              id   type    
+      --------------------------------------------
+      aphlex_1a_flow_test_1-freeparts   2    fluid   
+
+   Setup Conditions
+
+      aphlex_1a_flow_test_1-freeparts
+
+         Condition       Value   
+         ---------------------
+         Frame Motion?   no      
+         Mesh Motion?    no      
+
+</CellZoneConditions>
+
+<BoundaryConditions>
+Boundary Conditions
+-------------------
+
+   Zones
+
+      name                                   id   type                 
+      --------------------------------------------------------------
+      inlet                                  5    pressure-inlet       
+      farfield                               8    pressure-far-field   
+      axis                                   6    axis                 
+      outlet                                 7    pressure-outlet      
+      wall-aphlex_1a_flow_test_1-freeparts   9    wall                 
+
+   Setup Conditions
+
+      inlet
+
+         Condition                                    Value     
+         ----------------------------------------------------
+         Gauge Total Pressure (pascal)                1000000   
+         Supersonic/Initial Gauge Pressure (pascal)   999000    
+         Total Temperature (k)                        2254.52   
+
+      farfield
+
+         Condition                 Value   
+         -------------------------------
+         Gauge Pressure (pascal)   54000   
+         Temperature (k)           240     
+
+      axis
+
+         Condition   Value   
+         -----------------
+
+      outlet
+
+         Condition                        Value   
+         --------------------------------------
+         Gauge Pressure (pascal)          54000   
+         Backflow Total Temperature (k)   240     
+
+      wall-aphlex_1a_flow_test_1-freeparts
+
+         Condition                  Value   
+         --------------------------------
+         Thermal BC Type            1       
+         Wall Motion                0       
+         Shear Boundary Condition   0       
+
+</BoundaryConditions>
+
+<SolverSettings>
+Solver Settings
+---------------
+
+   Equations
+
+      Equation     Solved   
+      -------------------
+      Flow         yes      
+      Turbulence   yes      
+
+   Numerics
+
+      Numeric                         Enabled   
+      ---------------------------------------
+      Absolute Velocity Formulation   yes       
+
+   Unsteady Calculation Parameters
+
+                                              
+      -------------------------------------
+      Time Step (s)                   2e-06   
+      Max. Iterations Per Time Step   10      
+
+   Relaxation
+
+      Variable                    Relaxation Factor   
+      ---------------------------------------------
+      Turbulent Kinetic Energy    0.8                 
+      Specific Dissipation Rate   0.8                 
+      Turbulent Viscosity         1                   
+      Solid                       1                   
+
+   Linear Solver
+
+                                  Solver     Termination   Residual Reduction   
+      Variable                    Type       Criterion     Tolerance            
+      -----------------------------------------------------------------------
+      Flow                        F-Cycle    0.1                                
+      Turbulent Kinetic Energy    Flexible   0.1           0.7                  
+      Specific Dissipation Rate   Flexible   0.1           0.7                  
+
+   Discretization Scheme
+
+      Variable                    Scheme                
+      -----------------------------------------------
+      Flow                        Second Order Upwind   
+      Turbulent Kinetic Energy    Second Order Upwind   
+      Specific Dissipation Rate   Second Order Upwind   
+
+   Time Marching
+
+      Parameter            Value      
+      -----------------------------
+      Solver               Implicit   
+      Physical Time Step   2e-06      
+      Courant Number       2          
+
+   Solution Limits
+
+      Quantity                        Limit    
+      --------------------------------------
+      Minimum Absolute Pressure       1        
+      Maximum Absolute Pressure       5e+10    
+      Minimum Temperature             1        
+      Maximum Temperature             5000     
+      Maximum Turb. Viscosity Ratio   100000   
+
+</SolverSettings>
+
+</FluentXMLReport>

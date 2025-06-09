@@ -1,0 +1,238 @@
+<FluentXMLReport>
+<version>
+Fluent
+Version: 3d, pbns, rke (3d, pressure-based, realizable k-epsilon)
+Release: 20.2.0
+Title: 
+</version>
+
+<Models>
+
+Models
+------
+
+   Model                        Settings                                
+   ------------------------------------------------------------------
+   Space                        3D                                      
+   Time                         Steady                                  
+   Viscous                      Realizable k-epsilon turbulence model   
+   Wall Treatment               Standard Wall Functions                 
+   Heat Transfer                Enabled                                 
+   Solidification and Melting   Disabled                                
+   Radiation                    None                                    
+   Species                      Disabled                                
+   Coupled Dispersed Phase      Disabled                                
+   NOx Pollutants               Disabled                                
+   SOx Pollutants               Disabled                                
+   Soot                         Disabled                                
+   Mercury Pollutants           Disabled                                
+   Structure                    Disabled                                
+   Acoustics                    Disabled                                
+   Eulerian Wall Film           Disabled                                
+   Potential/Li-ion Battery     Disabled                                
+   Multiphase                   Disabled                                
+
+</Models>
+
+<MaterialProperties>
+Material Properties
+-------------------
+
+   Material: ethyl-alcohol-liquid (fluid)
+
+      Property                        Units     Method     Value(s)   
+      -------------------------------------------------------------
+      Density                         kg/m3     constant   790        
+      Cp (Specific Heat)              j/kg-k    constant   2470       
+      Thermal Conductivity            w/m-k     constant   0.182      
+      Viscosity                       kg/m-s    constant   0.0012     
+      Molecular Weight                kg/kmol   constant   46.07      
+      Thermal Expansion Coefficient   1/k       constant   0          
+      Speed of Sound                  m/s       none       #f         
+
+   Material: nitrous-oxide (fluid)
+
+      Property                        Units     Method       Value(s)                                                                                                                                                   
+      ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      Density                         kg/m3     constant     1                                                                                                                                                          
+      Cp (Specific Heat)              j/kg-k    polynomial   (300-1000: 480.40209 1.7931449 -0.0018499269 1.183286e-06 -3.5926868e-10) (1000-5000: 891.44932 0.54286542 -0.00022621572 4.2514557e-08 -2.9759269e-12)    
+      Thermal Conductivity            w/m-k     constant     0.0454                                                                                                                                                     
+      Viscosity                       kg/m-s    constant     1.72e-05                                                                                                                                                   
+      Molecular Weight                kg/kmol   constant     44.0128                                                                                                                                                    
+      Thermal Expansion Coefficient   1/k       constant     0                                                                                                                                                          
+      Speed of Sound                  m/s       none         #f                                                                                                                                                         
+
+   Material: air (fluid)
+
+      Property                        Units     Method     Value(s)     
+      ---------------------------------------------------------------
+      Density                         kg/m3     constant   1.225        
+      Cp (Specific Heat)              j/kg-k    constant   1006.43      
+      Thermal Conductivity            w/m-k     constant   0.0242       
+      Viscosity                       kg/m-s    constant   1.7894e-05   
+      Molecular Weight                kg/kmol   constant   28.966       
+      Thermal Expansion Coefficient   1/k       constant   0            
+      Speed of Sound                  m/s       none       #f           
+
+   Material: aluminum (solid)
+
+      Property               Units    Method     Value(s)   
+      ---------------------------------------------------
+      Density                kg/m3    constant   2719       
+      Cp (Specific Heat)     j/kg-k   constant   871        
+      Thermal Conductivity   w/m-k    constant   202.4      
+
+</MaterialProperties>
+
+<CellZoneConditions>
+Cell Zone Conditions
+--------------------
+
+   Zones
+
+      name        id   type    
+      ----------------------
+      fff_body1   3    fluid   
+
+   Setup Conditions
+
+      fff_body1
+
+         Condition       Value   
+         ---------------------
+         Material Name   air     
+         Frame Motion?   no      
+
+</CellZoneConditions>
+
+<BoundaryConditions>
+Boundary Conditions
+-------------------
+
+   Zones
+
+      name             id   type              
+      -------------------------------------
+      inlet_ox         17   pressure-inlet    
+      inlet_fuel       9    pressure-inlet    
+      wall-fff_body1   1    wall              
+      outlet           7    pressure-outlet   
+      farfield         8    wall              
+
+   Setup Conditions
+
+      inlet_ox
+
+         Condition                                    Value     
+         ----------------------------------------------------
+         Gauge Total Pressure (pascal)                3861000   
+         Supersonic/Initial Gauge Pressure (pascal)   3800000   
+
+      inlet_fuel
+
+         Condition                                    Value     
+         ----------------------------------------------------
+         Gauge Total Pressure (pascal)                3137000   
+         Supersonic/Initial Gauge Pressure (pascal)   3000000   
+
+      wall-fff_body1
+
+         Condition                  Value             
+         ------------------------------------------
+         Thermal BC Type            Heat Flux         
+         Wall Motion                Stationary Wall   
+         Shear Boundary Condition   No Slip           
+
+      outlet
+
+         Condition                                         Value     
+         ---------------------------------------------------------
+         Gauge Pressure (pascal)                           2413000   
+         Backflow Total Temperature (k)                    2000      
+         Specify targeted mass flow rate                   yes       
+         Targeted mass flow (kg/s)                         1.42      
+         Upper Limit of Absolute Pressure Value (pascal)   5000000   
+         Lower Limit of Absolute Pressure Value (pascal)   1         
+
+      farfield
+
+         Condition                  Value             
+         ------------------------------------------
+         Thermal BC Type            Heat Flux         
+         Wall Motion                Stationary Wall   
+         Shear Boundary Condition   No Slip           
+
+</BoundaryConditions>
+
+<SolverSettings>
+Solver Settings
+---------------
+
+   Equations
+
+      Equation     Solved   
+      -------------------
+      Flow         yes      
+      Turbulence   yes      
+      Energy       yes      
+
+   Numerics
+
+      Numeric                         Enabled   
+      ---------------------------------------
+      Absolute Velocity Formulation   yes       
+
+   Relaxation
+
+      Variable                     Relaxation Factor   
+      ----------------------------------------------
+      Density                      1                   
+      Body Forces                  1                   
+      Turbulent Kinetic Energy     0.75                
+      Turbulent Dissipation Rate   0.75                
+      Turbulent Viscosity          1                   
+      Energy                       0.75                
+
+   Linear Solver
+
+      Variable                     Solver Type   Termination Criterion   Residual Reduction Tolerance   
+      -----------------------------------------------------------------------------------------------
+      Flow                         F-Cycle       0.1                                                    
+      Turbulent Kinetic Energy     F-Cycle       0.1                                                    
+      Turbulent Dissipation Rate   F-Cycle       0.1                                                    
+      Energy                       F-Cycle       0.1                                                    
+
+   Pressure-Velocity Coupling
+
+      Parameter                            Value     
+      --------------------------------------------
+      Type                                 Coupled   
+      Pseudo Transient                     yes       
+      Explicit momentum under-relaxation   0.5       
+      Explicit pressure under-relaxation   0.5       
+
+   Discretization Scheme
+
+      Variable                     Scheme               
+      -----------------------------------------------
+      Pressure                     PRESTO!              
+      Momentum                     First Order Upwind   
+      Turbulent Kinetic Energy     First Order Upwind   
+      Turbulent Dissipation Rate   First Order Upwind   
+      Energy                       First Order Upwind   
+
+   Solution Limits
+
+      Quantity                         Limit    
+      ---------------------------------------
+      Minimum Absolute Pressure        1        
+      Maximum Absolute Pressure        5e+10    
+      Minimum Temperature              1        
+      Maximum Temperature              5000     
+      Minimum Turb. Kinetic Energy     1e-14    
+      Minimum Turb. Dissipation Rate   1e-20    
+      Maximum Turb. Viscosity Ratio    100000   
+
+</SolverSettings>
+
+</FluentXMLReport>

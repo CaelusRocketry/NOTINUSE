@@ -1,0 +1,147 @@
+<section name="CFD-Post Report">
+  <section>
+    <text name="Date"><![CDATA[ 2019/02/12 23:03:17]]></text>
+  </section>
+  <section name="Contents">
+    <link name="File Report" src="#SECTION1._Case FFF" />
+    <link name="    Table 1  File Information for FFF" src="#TABLE1_Case FFF" />
+    <link name="Mesh Report" src="#SECTION2._Case FFF" />
+    <link name="    Table 2  Mesh Information for FFF" src="#TABLE2_Case FFF" />
+    <link name="Physics Report" src="#SECTION3._Case FFF" />
+    <link name="    Table 3  Domain Physics for FFF" src="#TABLE3_Case FFF" />
+    <link name="    Table 4  Boundary Physics for FFF" src="#TABLE4_Case FFF" />
+    <link name="User Data" src="#SECTION4._Case FFF" />
+  </section>
+  <section name="File Report" anchorId="SECTION1._Case FFF">
+    <table name="File Information for FFF" showHeaders="true" collapsible="true" anchorId="TABLE1_Case FFF">
+      <column name="Case" id="col1" />
+      <column name="FFF" id="col2" />
+      <row id="0">
+        <value>File Path</value>
+        <value>C:\Users\Jason\ProjectCaelus\Simulations\Aphlex 1A Flow Test 1_files\dp0\FFF\Fluent\FFF-2-03000.dat.gz</value>
+      </row>
+      <row id="1">
+        <value>File Date</value>
+        <value>12 February 2019</value>
+      </row>
+      <row id="2">
+        <value>File Time</value>
+        <value>10:51:01 PM</value>
+      </row>
+      <row id="3">
+        <value>File Type</value>
+        <value>FLUENT</value>
+      </row>
+      <row id="4">
+        <value>File Version</value>
+        <value>19.2.0</value>
+      </row>
+    </table>
+  </section>
+  <section name="Mesh Report" anchorId="SECTION2._Case FFF">
+    <table name="Mesh Information for FFF" showHeaders="true" collapsible="true" anchorId="TABLE2_Case FFF">
+      <column name="Domain" id="col1" />
+      <column name="Nodes" id="col2" />
+      <column name="Elements" id="col3" />
+      <row id="0">
+        <value>fff_main</value>
+        <value>59266</value>
+        <value>57753</value>
+      </row>
+    </table>
+  </section>
+  <section name="Physics Report" anchorId="SECTION3._Case FFF">
+    <table name="Domain Physics for FFF" showHeaders="true" collapsible="true" anchorId="TABLE3_Case FFF">
+      <column name="Domain - fff_main" id="col1" />
+      <column name="" id="col2" />
+      <row id="0">
+        <value>Type</value>
+        <value>cell</value>
+      </row>
+    </table>
+    <table name="Boundary Physics for FFF" showHeaders="true" collapsible="true" anchorId="TABLE4_Case FFF">
+      <column name="Domain" id="col1" />
+      <column name="Boundaries" id="col2" />
+      <column name="" id="col3" />
+      <row id="0">
+        <value>fff_main</value>
+        <value>Boundary - inlet</value>
+        <value>
+        </value>
+      </row>
+      <row id="1">
+        <value>
+        </value>
+        <value>Type</value>
+        <value>PRESSURE-INLET</value>
+      </row>
+      <row id="2">
+        <value>
+        </value>
+        <value>Boundary - outlet</value>
+        <value>
+        </value>
+      </row>
+      <row id="3" parentRowId="2">
+        <value>
+        </value>
+        <value>Type</value>
+        <value>PRESSURE-OUTLET</value>
+      </row>
+      <row id="4">
+        <value>
+        </value>
+        <value>Boundary - symmetry</value>
+        <value>
+        </value>
+      </row>
+      <row id="5" parentRowId="4">
+        <value>
+        </value>
+        <value>Type</value>
+        <value>SYMMETRY</value>
+      </row>
+      <row id="6">
+        <value>
+        </value>
+        <value>Boundary - symmetry 1</value>
+        <value>
+        </value>
+      </row>
+      <row id="7" parentRowId="6">
+        <value>
+        </value>
+        <value>Type</value>
+        <value>SYMMETRY</value>
+      </row>
+      <row id="8">
+        <value>
+        </value>
+        <value>Boundary - symmetry 2</value>
+        <value>
+        </value>
+      </row>
+      <row id="9" parentRowId="8">
+        <value>
+        </value>
+        <value>Type</value>
+        <value>SYMMETRY</value>
+      </row>
+      <row id="10">
+        <value>
+        </value>
+        <value>Boundary - wall fff_main</value>
+        <value>
+        </value>
+      </row>
+      <row id="11" parentRowId="10">
+        <value>
+        </value>
+        <value>Type</value>
+        <value>WALL</value>
+      </row>
+    </table>
+  </section>
+  <section name="User Data" anchorId="SECTION4._Case FFF">
+  </section>
+</section>

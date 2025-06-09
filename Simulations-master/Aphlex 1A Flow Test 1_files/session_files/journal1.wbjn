@@ -1,0 +1,734 @@
+# encoding: utf-8
+# Release 19.2
+SetScriptVersion(Version="19.2.120")
+template1 = GetTemplate(TemplateName="Fluid Flow")
+system1 = template1.CreateSystem()
+geometry1 = system1.GetContainer(ComponentName="Geometry")
+geometryProperties1 = geometry1.GetGeometryProperties()
+geometryProperties1.GeometryImportAnalysisType = "AnalysisType_2D"
+geometry1.SetFile(FilePath="C:/Users/Jason/ProjectCaelus/Simulations/Aphlex 1A Flow Test 1.step")
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+meshComponent1 = system1.GetComponent(Name="Mesh")
+meshComponent1.Refresh()
+mesh1 = system1.GetContainer(ComponentName="Mesh")
+mesh1.Edit()
+mesh1.Exit()
+geometry1.Edit(IsSpaceClaimGeometry=True)
+geometry1.Exit()
+meshComponent1.Reset()
+meshComponent1.UpdateUpstreamComponents()
+meshComponent1.Refresh()
+mesh1.Edit()
+Save(Overwrite=True)
+setupComponent1 = system1.GetComponent(Name="Setup")
+setupComponent1.Refresh()
+setup1 = system1.GetContainer(ComponentName="Setup")
+fluentLauncherSettings1 = setup1.GetFluentLauncherSettings()
+fluentLauncherSettings1.SetEntityProperties(Properties=Set(EnvPath={}, RunParallel=True, NumberOfProcessors=8, NumberOfGPGPUs=1))
+setup1.Edit()
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based")(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox5(Time)*Transient" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox5(Time)*Transient")(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Axisymmetric" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Axisymmetric")(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Planar" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Planar")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*FileMenu*Close Fluent")')
+Save(Overwrite=True)
+mesh1.Exit()
+meshComponent1.Update(AllDependencies=True)
+setupComponent1.Clean()
+setupComponent1.Refresh()
+fluentLauncherSettings1.SetEntityProperties(Properties=Set(EnvPath={}))
+setup1.Edit()
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-set-toggle-button2 "Energy*Table1(Energy)*ToggleBox1*CheckButton1(Energy Equation)" #t)(cx-gui-do cx-activate-item "Energy*Table1(Energy)*ToggleBox1*CheckButton1(Energy Equation)")(cx-gui-do cx-activate-item "Energy*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Radiation (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-set-toggle-button2 "Viscous Model*Table1*ToggleBox1(Model)*Scale-Adaptive Simulation (SAS)" #t)(cx-gui-do cx-activate-item "Viscous Model*Table1*ToggleBox1(Model)*Scale-Adaptive Simulation (SAS)")(cx-gui-do cx-set-toggle-button2 "Viscous Model*Table1*ToggleBox1(Model)*Detached Eddy Simulation (DES)" #t)(cx-gui-do cx-activate-item "Viscous Model*Table1*ToggleBox1(Model)*Detached Eddy Simulation (DES)")(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-set-list-selections \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\" '( 2))(cx-gui-do cx-activate-item \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\")(cx-gui-do cx-set-list-selections \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\" '( 1))(cx-gui-do cx-activate-item \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\")(cx-gui-do cx-set-real-entry-list \"Create/Edit Materials*RealEntry18\" '( 17.176))(cx-gui-do cx-activate-item \"Create/Edit Materials*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 0))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*Table3*DropDownList2(Type)\" '( 11))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*DropDownList2(Type)\")(cx-gui-do cx-set-real-entry-list \"Pressure Inlet*Frame3*Frame1(Momentum)*Table1*Table6*RealEntry2(Gauge Total Pressure)\" '( 1000000))(cx-gui-do cx-set-real-entry-list \"Pressure Inlet*Frame3*Frame1(Momentum)*Table1*Table7*RealEntry2(Supersonic/Initial Gauge Pressure)\" '( 999000))(cx-gui-do cx-set-real-entry-list \"Pressure Inlet*Frame3*Frame2(Thermal)*Table1*Table1*RealEntry2(Total Temperature)\" '( 2254.52))(cx-gui-do cx-activate-item \"Pressure Inlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*Table2*PushButton2(Operating Conditions)\")(cx-gui-do cx-set-real-entry-list \"Operating Conditions*Frame1*Table1(Pressure)*RealEntry2(Operating Pressure)\" '( 0))(cx-gui-do cx-activate-item \"Operating Conditions*Frame1*Table1(Pressure)*RealEntry2(Operating Pressure)\")(cx-gui-do cx-activate-item \"Operating Conditions*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 2))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)\")(cx-gui-do cx-set-real-entry-list \"Pressure Outlet*Frame3*Frame1(Momentum)*Table1*Table6*RealEntry2(Gauge Pressure)\" '( 54000))(cx-gui-do cx-set-real-entry-list \"Pressure Outlet*Frame3*Frame2(Thermal)*Table1*Table1*RealEntry2(Backflow Total Temperature)\" '( 240))(cx-gui-do cx-activate-item \"Pressure Outlet*Frame3*Frame2(Thermal)*Table1*Table1*RealEntry2(Backflow Total Temperature)\")(cx-gui-do cx-activate-item \"Pressure Outlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 3))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 4))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 2))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)\")(cx-gui-do cx-activate-item \"Pressure Outlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 0))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)\")(cx-gui-do cx-activate-item \"Pressure Inlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Dynamic Mesh\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-selections \"Reference Values*DropDownList1(Compute from)\" '( 1))(cx-gui-do cx-activate-item \"Reference Values*DropDownList1(Compute from)\")(cx-gui-do cx-set-real-entry-list \"Reference Values*Table2(Reference Values)*RealEntry10(Ratio of Specific Heats)\" '( 1.2))(cx-gui-do cx-activate-item \"Reference Values*Table2(Reference Values)*RealEntry10(Ratio of Specific Heats)\")(cx-gui-do cx-set-real-entry-list \"Reference Values*Table2(Reference Values)*RealEntry10(Ratio of Specific Heats)\" '( 1.2579))(cx-gui-do cx-activate-item \"Reference Values*Table2(Reference Values)*RealEntry10(Ratio of Specific Heats)\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-set-list-selections \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList3(Turbulent Kinetic Energy)\" '( 1))(cx-gui-do cx-activate-item \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList3(Turbulent Kinetic Energy)\")(cx-gui-do cx-set-list-selections \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList4(Specific Dissipation Rate)\" '( 1))(cx-gui-do cx-activate-item \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList4(Specific Dissipation Rate)\")(cx-gui-do cx-set-list-selections \"Solution Methods*Table1*Table4*DropDownList1(Transient Formulation)\" '( 1))(cx-gui-do cx-activate-item \"Solution Methods*Table1*Table4*DropDownList1(Transient Formulation)\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Controls\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Controls\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Controls\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-activate-item \"Report Definitions*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Residual\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Residual\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Residual\"))(cx-gui-do cx-set-real-entry-list \"Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry11\" '( 0.0001))(cx-gui-do cx-set-real-entry-list \"Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry17\" '( 0.0001))(cx-gui-do cx-set-real-entry-list \"Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry23\" '( 0.0001))(cx-gui-do cx-set-real-entry-list \"Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry29\" '( 0.0001))(cx-gui-do cx-set-real-entry-list \"Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry35\" '( 0.0001))(cx-gui-do cx-set-real-entry-list \"Residual Monitors*Table1*Table2*Table1*Table1(Equations)*RealEntry41\" '( 0.0001))(cx-gui-do cx-activate-item \"Residual Monitors*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-activate-item "Report File Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Plots"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Plots"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Plots"))(cx-gui-do cx-activate-item "Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)")(cx-gui-do cx-activate-item "New Report Plot*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Plot Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Residual"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Integral...")(cx-gui-do cx-activate-item "Surface Report Definition*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Axisymmetric" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Axisymmetric")(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox5(Time)*Steady" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox5(Time)*Steady")(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (On)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (On)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (On)"))(cx-gui-do cx-activate-item "Energy*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Detached Eddy Simulation (DES), SST k-omega)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Detached Eddy Simulation (DES), SST k-omega)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Detached Eddy Simulation (DES), SST k-omega)"))(cx-gui-do cx-set-toggle-button2 "Viscous Model*Table1*ToggleBox1(Model)*k-epsilon (2 eqn)" #t)(cx-gui-do cx-activate-item "Viscous Model*Table1*ToggleBox1(Model)*k-epsilon (2 eqn)")(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*ToggleBox1(Model)*Species Transport" #t)(cx-gui-do cx-activate-item "Species Model*Table1*ToggleBox1(Model)*Species Transport")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame3(Reactions)*ToggleBox1*CheckButton1(Volumetric)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame3(Reactions)*ToggleBox1*CheckButton1(Volumetric)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton1(Inlet Diffusion)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton1(Inlet Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton3(Full Multicomponent Diffusion)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton3(Full Multicomponent Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton4(Thermal Diffusion)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton4(Thermal Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton4(Thermal Diffusion)" #f)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton4(Thermal Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton3(Full Multicomponent Diffusion)" #f)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton3(Full Multicomponent Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table2*Frame5(Turbulence-Chemistry Interaction)*ToggleBox1*Eddy-Dissipation" #t)(cx-gui-do cx-activate-item "Species Model*Table2*Frame5(Turbulence-Chemistry Interaction)*ToggleBox1*Eddy-Dissipation")(cx-gui-do cx-activate-item "Species Model*Table2*Table9*PushButton1(Select Boundary Species)")(cx-gui-do cx-activate-item "Select Boundary Species*PushButton4(fl_ShowSelected)")(cx-gui-do cx-activate-item "Select Boundary Species*Table1*Frame1(Unselected)*List1(Species)")(cx-gui-do cx-activate-item "Select Boundary Species*PushButton2(fl_SelectAll)")(cx-gui-do cx-activate-item "Select Boundary Species*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Species Model*Table2*Table1(Mixture Properties)*PushButton3(View)\")(cx-gui-do cx-activate-item \"Fluent Database Materials*PushButton7(Edit)\")(cx-gui-do cx-set-list-selections \"Species*Table2*Frame2*List1(Selected Species)\" '( 0))(cx-gui-do cx-activate-item \"Species*Table2*Frame2*List1(Selected Species)\")(cx-gui-do cx-activate-item \"Species*PanelButtons*PushButton2(Cancel)\")(cx-gui-do cx-activate-item \"Fluent Database Materials*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Species Model*Table2*Table9*PushButton1(Select Boundary Species)\")(cx-gui-do cx-set-list-selections \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\" '( 0))(cx-gui-do cx-activate-item \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\")(cx-gui-do cx-set-list-selections \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\" '( 0 1))(cx-gui-do cx-activate-item \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\")(cx-gui-do cx-set-list-selections \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\" '( 0))(cx-gui-do cx-activate-item \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\")(cx-gui-do cx-set-list-selections \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\" '())(cx-gui-do cx-activate-item \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\")(cx-gui-do cx-set-list-selections \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\" '( 0))(cx-gui-do cx-activate-item \"Select Boundary Species*Table1*Frame2(Selected)*List1(Species)\")(cx-gui-do cx-activate-item \"Select Boundary Species*Table1*Frame2(Selected)*PushButton2(Remove)\")(cx-gui-do cx-activate-item \"Select Boundary Species*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Species Model*Table2*Table1(Mixture Properties)*PushButton3(View)\")(cx-gui-do cx-set-list-selections \"Fluent Database Materials*Table6(Properties)*DropDownList2(Reaction)\" '( 2))(cx-gui-do cx-activate-item \"Fluent Database Materials*Table6(Properties)*DropDownList2(Reaction)\")(cx-gui-do cx-activate-item \"Reactions*PanelButtons*PushButton2(Cancel)\")(cx-gui-do cx-set-list-selections \"Fluent Database Materials*Table6(Properties)*DropDownList2(Reaction)\" '( 0))(cx-gui-do cx-activate-item \"Fluent Database Materials*Table6(Properties)*DropDownList2(Reaction)\")(cx-gui-do cx-activate-item \"Reactions*PanelButtons*PushButton2(Cancel)\")(cx-gui-do cx-activate-item \"Fluent Database Materials*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Species Model*Table2*Table9*PushButton1(Select Boundary Species)")(cx-gui-do cx-activate-item "Select Boundary Species*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Pressure-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Pressure-Based")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*ToggleBox1(Model)*Premixed Combustion" #t)(cx-gui-do cx-activate-item "Species Model*Table1*ToggleBox1(Model)*Premixed Combustion")(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Information*OK\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)|Reactor Network (Off)\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)|Reactor Network (Off)\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)|Reactor Network (Off)\"))(cx-gui-do cx-activate-item \"Reactor Network*PanelButtons*PushButton2(Cancel)\")(cx-gui-do cx-activate-item \"Error*OK\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models|Species (Premixed Combustion)\"))(cx-gui-do cx-set-toggle-button2 \"Species Model*Table1*ToggleBox1(Model)*Species Transport\" #t)(cx-gui-do cx-activate-item \"Species Model*Table1*ToggleBox1(Model)*Species Transport\")(cx-gui-do cx-set-toggle-button2 \"Species Model*Table1*ToggleBox1(Model)*Non-Premixed Combustion\" #t)(cx-gui-do cx-activate-item \"Species Model*Table1*ToggleBox1(Model)*Non-Premixed Combustion\")(cx-gui-do cx-set-real-entry-list \"Species Model*Table2*Frame4(PDF Table Creation)*Frame1(Chemistry)*Frame1*Table1*Table4(Model Settings)*RealEntry1(Operating Pressure)\" '( 1000000))(cx-gui-do cx-set-text-entry \"Species Model*Table2*Frame4(PDF Table Creation)*Frame2(Boundary)*Frame1*Table2*Frame1(Boundary Species)*TextEntry1\" \"c3h8oh\")(cx-gui-do cx-activate-item \"Species Model*Table2*Frame4(PDF Table Creation)*Frame2(Boundary)*Frame1*Table2*Frame1(Boundary Species)*TextEntry1\")(cx-gui-do cx-activate-item \"Species Model*Table2*Frame4(PDF Table Creation)*Frame2(Boundary)*Frame1*Table2*Frame1(Boundary Species)*PushButton2(   Add)\")(cx-gui-do cx-activate-item \"Error*OK\")(cx-gui-do cx-set-text-entry \"Species Model*Table2*Frame4(PDF Table Creation)*Frame2(Boundary)*Frame1*Table2*Frame1(Boundary Species)*TextEntry1\" \"ch4\")(cx-gui-do cx-activate-item \"Species Model*Table2*Frame4(PDF Table Creation)*Frame2(Boundary)*Frame1*Table2*Frame1(Boundary Species)*PushButton2(   Add)\")(cx-gui-do cx-activate-item \"Species Model*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Premixed Combustion)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Premixed Combustion)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Premixed Combustion)"))(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "Discrete Phase Model*PanelButtons*PushButton5(Injections)")(cx-gui-do cx-activate-item "Injections*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Discrete Phase Model*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Premixed Combustion)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Premixed Combustion)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Premixed Combustion)"))(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "Discrete Phase Model*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based")(cx-gui-do cx-activate-item "Question*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*ToggleBox1(Model)*Species Transport" #t)(cx-gui-do cx-activate-item "Species Model*Table1*ToggleBox1(Model)*Species Transport")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton1(Inlet Diffusion)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton1(Inlet Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame3(Reactions)*ToggleBox1*CheckButton1(Volumetric)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame3(Reactions)*ToggleBox1*CheckButton1(Volumetric)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table2*Frame5(Turbulence-Chemistry Interaction)*ToggleBox1*Eddy-Dissipation" #t)(cx-gui-do cx-activate-item "Species Model*Table2*Frame5(Turbulence-Chemistry Interaction)*ToggleBox1*Eddy-Dissipation")(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "Species Model*Table2*Table9*PushButton1(Select Boundary Species)")(cx-gui-do cx-activate-item "Select Boundary Species*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Species Model*Table2*Table9*PushButton2(Select Reported Residuals)")(cx-gui-do cx-activate-item "Select Residual Monitored Species*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "Discrete Phase Model*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=14)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=14)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=14)"))(cx-gui-do cx-activate-item "Pressure Inlet*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*Table2*PushButton2(Operating Conditions)\")(cx-gui-do cx-set-real-entry-list \"Operating Conditions*Frame1*Table1(Pressure)*RealEntry2(Operating Pressure)\" '( 54000))(cx-gui-do cx-activate-item \"Operating Conditions*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 2))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)\")(cx-gui-do cx-activate-item \"Pressure Outlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*Table3*Table4*Table2*PushButton2(Operating Conditions)\")(cx-gui-do cx-set-real-entry-list \"Operating Conditions*Frame1*Table1(Pressure)*RealEntry2(Operating Pressure)\" '( 1))(cx-gui-do cx-activate-item \"Operating Conditions*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Dynamic Mesh\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Dynamic Mesh\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|General\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|General\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|General\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-set-list-selections \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList5(Turbulent Dissipation Rate)\" '( 1))(cx-gui-do cx-activate-item \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList5(Turbulent Dissipation Rate)\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Controls\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Controls\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Controls\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Surface ReportSubMenu*Area...\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 1))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 8))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 11))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 0))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 8))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 10))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 0))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton2(Edit)\")(cx-gui-do cx-set-text-entry \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\" \"tke-area-weighted\")(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Volume ReportSubMenu*Volume-Average...\")(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\" '( 7))(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\")(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\" '( 2))(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\")(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*List5(Cell Zones)\" '( 0))(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table2*List5(Cell Zones)\")(cx-gui-do cx-set-text-entry \"Volume Report Definition*Table1*Table1*TextEntry1(Name)\" \"vel-vol-avg\")(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"Volume Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Force ReportSubMenu*Force...\")(cx-gui-do cx-set-text-entry \"Force Report Definition*Table1*TextEntry3(Name)\" \"force\")(cx-gui-do cx-activate-item \"Force Report Definition*Table1*TextEntry3(Name)\")(cx-gui-do cx-set-toggle-button2 \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-set-list-selections \"Force Report Definition*Table1*Table2*List2(Wall Zones)\" '( 0))(cx-gui-do cx-activate-item \"Force Report Definition*Table1*Table2*List2(Wall Zones)\")(cx-gui-do cx-activate-item \"Force Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 1))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton2(Edit)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 1 2))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 1))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '())(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 2))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton2(Edit)\")(cx-gui-do cx-activate-item \"Volume Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Volume ReportSubMenu*Volume-Average...\")(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\" '( 4))(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table2*DropDownList2(Field Variable)\")(cx-gui-do cx-set-list-selections \"Volume Report Definition*Table1*Table2*List5(Cell Zones)\" '( 0))(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table2*List5(Cell Zones)\")(cx-gui-do cx-set-toggle-button2 \"Volume Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Volume Report Definition*Table1*Table1*Table5(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table1*Table5(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-set-text-entry \"Volume Report Definition*Table1*Table1*TextEntry1(Name)\" \"tke-vol-weighted\")(cx-gui-do cx-activate-item \"Volume Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"Volume Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Surface ReportSubMenu*Standard Deviation...\")(cx-gui-do cx-set-text-entry \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\" \"tke-sd\")(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 1 4))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 1))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton2(Edit)\")(cx-gui-do cx-set-text-entry \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\" \"tke-uniform-area-weighted\")(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Surface ReportSubMenu*Area-Weighted Average...\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\")(cx-gui-do cx-set-text-entry \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\" \"tke-area-weighted\")(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-activate-item \"MenuBar*Surface ReportSubMenu*Area-Weighted Average...\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 2))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 2))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-text-entry \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\" \"vel-area-weighted\")(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files\"))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report File*Table1*List2(Available Report Definitions)\" '( 0 1 2 3 4 5 6))(cx-gui-do cx-activate-item \"New Report File*Table1*List2(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report File*Table1*Table4*PushButton1( Add>>)\")(cx-gui-do cx-activate-item \"New Report File*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-activate-item "Report File Definitions*Table1*ButtonBox3*PushButton1(New)")(cx-gui-do cx-activate-item "New Report File*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 1))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 0 1))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 0))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 1))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 2))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 3))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 2 3))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 2))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 2))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 3))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 3))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-activate-item \"Report File Definitions*Table1*ButtonBox3*PushButton2(Edit)\")(cx-gui-do cx-activate-item \"Edit Report File*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 2 3))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 2))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 3))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 0))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 0 1))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 0 1 2))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-activate-item \"Report File Definitions*Table1*ButtonBox3*PushButton3(Delete)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '( 0))(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-set-list-selections \"Report File Definitions*Table1*List1(Report Files)\" '())(cx-gui-do cx-activate-item \"Report File Definitions*Table1*List1(Report Files)\")(cx-gui-do cx-activate-item \"Report File Definitions*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-activate-item "Report File Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files|report-file-0\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Plots\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Plots\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Plots\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Plots\"))(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '( 2))(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 0 1 2 3 4 5 6))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '( 2 3))(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '( 0 2 3))(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton3(Delete)\")(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '( 0))(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 0 1 2 3 4 5 6))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 6))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 0))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-set-text-entry \"New Report Plot*Table1*Table5(Options)*TextEntry3(Plot Title)\" \"report-plot-\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '())(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '( 0))(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton3(Delete)\")(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 0))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Plot Definitions*Table1*List1(Report Plots)\" '( 0))(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*List1(Report Plots)\")(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton2(Edit)\")(cx-gui-do cx-set-text-entry \"Edit Report Plot*Table1*Table1*TextEntry1(Name)\" \"force\")(cx-gui-do cx-activate-item \"Edit Report Plot*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"Edit Report Plot*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 1))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-set-text-entry \"New Report Plot*Table1*Table1*TextEntry1(Name)\" \"tke-area-weighted\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 2))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-set-text-entry \"New Report Plot*Table1*Table1*TextEntry1(Name)\" \"tk-sd\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Report Plot Definitions*Table1*ButtonBox3*PushButton1(New)\")(cx-gui-do cx-set-list-selections \"New Report Plot*Table1*List4(Available Report Definitions)\" '( 5))(cx-gui-do cx-activate-item \"New Report Plot*Table1*List4(Available Report Definitions)\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table3*PushButton1( Add>>)\")(cx-gui-do cx-set-text-entry \"New Report Plot*Table1*Table1*TextEntry1(Name)\" \"vel-area-weighted\")(cx-gui-do cx-activate-item \"New Report Plot*Table1*Table1*TextEntry1(Name)\")(cx-gui-do cx-activate-item \"New Report Plot*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Plot Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Cell Registers"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Cell Registers"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Cell Registers"))(cx-gui-do cx-activate-item "Manage Cell Registers*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Initialization\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Initialization\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Initialization\"))(cx-gui-do cx-set-list-selections \"Solution Initialization*Table1*DropDownList1(Compute from)\" '( 1))(cx-gui-do cx-activate-item \"Solution Initialization*Table1*DropDownList1(Compute from)\")(cx-gui-do cx-activate-item \"Solution Initialization*Table1*Frame8*PushButton1(Initialize)\")(cx-gui-do cx-set-list-selections \"Solution Initialization*Table1*DropDownList1(Compute from)\" '( 1))(cx-gui-do cx-activate-item \"Solution Initialization*Table1*DropDownList1(Compute from)\")(cx-gui-do cx-activate-item \"Solution Initialization*Table1*Frame8*PushButton1(Initialize)\")(cx-gui-do cx-activate-item \"Question*OK\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Calculation Activities\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Calculation Activities\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Calculation Activities\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files|report-file-0\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files|report-file-0\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files|report-file-0\"))(cx-gui-do cx-activate-item \"Edit Report File*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Monitors|Report Files|report-file-0\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions\"))(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 3))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 3 6))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 3 4 6))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")(cx-gui-do cx-activate-item \"Report Definitions*Table1*ButtonBox3*PushButton3(Delete)\")(cx-gui-do cx-activate-item \"Question*OK\")(cx-gui-do cx-activate-item \"Question*OK\")(cx-gui-do cx-activate-item \"Question*OK\")(cx-gui-do cx-activate-item \"Report Definitions*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions|force"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+Save(Overwrite=True)
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Report Definitions|vel-area-weighted\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-activate-item \"MenuBar*FileMenu*Save Project\")(cx-gui-do cx-set-integer-entry \"Run Calculation*Table1*IntegerEntry10(Number of Iterations)\" 2000)(cx-gui-do cx-activate-item \"Run Calculation*Table1*IntegerEntry10(Number of Iterations)\")(cx-gui-do cx-activate-item \"Run Calculation*Table1*PushButton20(Data File Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 34))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 34 35))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 34 35 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 1 2 3 4 5 34 35 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 1 2 3 4 5 8 34 35 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 1 2 3 4 5 8 19 34 35 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 1 2 3 4 5 8 10 19 34 35 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 1 2 3 4 5 8 9 10 19 34 35 36))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-activate-item \"Data File Quantities*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton20(Data File Quantities)")(cx-gui-do cx-activate-item "Data File Quantities*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton22(Calculate)")(cx-gui-do cx-activate-item "Error*OK")(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton1(Check Case)")(cx-gui-do cx-activate-item "Case Check*PanelButtons*PushButton1(OK)")(cx-gui-do cx-activate-item "Question*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Case Check*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton22(Calculate)")(cx-gui-do cx-activate-item "Settings have changed!*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Error*OK")(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files|report-file-0"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files|report-file-0"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Files|report-file-0"))(cx-gui-do cx-activate-item "Edit Report File*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Plots"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Plots"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Monitors|Report Plots"))(cx-gui-do cx-activate-item "Report Plot Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Initialization\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Initialization\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Initialization\"))(cx-gui-do cx-set-list-selections \"Solution Initialization*Table1*DropDownList1(Compute from)\" '( 1))(cx-gui-do cx-activate-item \"Solution Initialization*Table1*DropDownList1(Compute from)\")(cx-gui-do cx-activate-item \"Solution Initialization*Table1*Frame8*PushButton1(Initialize)\")(cx-gui-do cx-activate-item \"Question*OK\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Calculation Activities\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Calculation Activities\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Calculation Activities\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-activate-item \"NavigationPane*List_Tree1\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Run Calculation\"))(cx-gui-do cx-activate-item \"Run Calculation*Table1*PushButton22(Calculate)\")(cx-gui-do cx-activate-item \"Error*OK\")(cx-gui-do cx-activate-item \"Information*OK\")")
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"MenuBar*FileMenu*Close Fluent\")(cx-gui-do cx-set-toggle-button2 \"Settings have changed!*Table1*ToggleBox2*Don't Save changes and exit\" #t)(cx-gui-do cx-activate-item \"Settings have changed!*Table1*ToggleBox2*Don't Save changes and exit\")(cx-gui-do cx-activate-item \"Settings have changed!*PanelButtons*PushButton1(OK)\")")
+solutionComponent1 = system1.GetComponent(Name="Solution")
+solutionComponent1.Reset()
+setupComponent1.Reset()
+setupComponent1.Refresh()
+fluentLauncherSettings1.SetEntityProperties(Properties=Set(DisplayText="Fluent Launcher Settings", EnvPath={}, RunParallel=True, NumberOfProcessors=8, NumberOfGPGPUs=1))
+setup1.Edit()
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based")(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Axisymmetric" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Axisymmetric")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (Off)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Energy (Off)"))(cx-gui-do cx-set-toggle-button2 "Energy*Table1(Energy)*ToggleBox1*CheckButton1(Energy Equation)" #t)(cx-gui-do cx-activate-item "Energy*Table1(Energy)*ToggleBox1*CheckButton1(Energy Equation)")(cx-gui-do cx-activate-item "Energy*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Laminar)"))(cx-gui-do cx-set-toggle-button2 "Viscous Model*Table1*ToggleBox1(Model)*k-epsilon (2 eqn)" #t)(cx-gui-do cx-activate-item "Viscous Model*Table1*ToggleBox1(Model)*k-epsilon (2 eqn)")(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Off)"))(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*ToggleBox1(Model)*Species Transport" #t)(cx-gui-do cx-activate-item "Species Model*Table1*ToggleBox1(Model)*Species Transport")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame3(Reactions)*ToggleBox1*CheckButton1(Volumetric)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame3(Reactions)*ToggleBox1*CheckButton1(Volumetric)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton1(Inlet Diffusion)" #t)(cx-gui-do cx-activate-item "Species Model*Table1*Frame6(Options)*ToggleBox1*CheckButton1(Inlet Diffusion)")(cx-gui-do cx-set-toggle-button2 "Species Model*Table2*Frame5(Turbulence-Chemistry Interaction)*ToggleBox1*Eddy-Dissipation" #t)(cx-gui-do cx-activate-item "Species Model*Table2*Frame5(Turbulence-Chemistry Interaction)*ToggleBox1*Eddy-Dissipation")(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Discrete Phase (Off)"))(cx-gui-do cx-activate-item "Discrete Phase Model*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-set-list-selections \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\" '( 1))(cx-gui-do cx-activate-item \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\")(cx-gui-do cx-set-real-entry-list \"Create/Edit Materials*RealEntry28\" '( 2254.52))(cx-gui-do cx-activate-item \"Create/Edit Materials*PanelButtons*PushButton1(Close)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-set-real-entry-list \"Create/Edit Materials*RealEntry28\" '( 2254.52))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton3(Change/Create)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-set-list-selections \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\" '( 1))(cx-gui-do cx-activate-item \"Create/Edit Materials*Table2*Table1(Properties)*DropDownList4(Density)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton3(Change/Create)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (velocity-inlet, id=5)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (velocity-inlet, id=5)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (velocity-inlet, id=5)"))(cx-gui-do cx-activate-item "Velocity Inlet*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 0))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*Table3*DropDownList2(Type)\" '( 11))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*DropDownList2(Type)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-real-entry-list \"Pressure Inlet*Frame3*Frame1(Momentum)*Table1*Table6*RealEntry2(Gauge Total Pressure)\" '( 1000000))(cx-gui-do cx-set-real-entry-list \"Pressure Inlet*Frame3*Frame1(Momentum)*Table1*Table7*RealEntry2(Supersonic/Initial Gauge Pressure)\" '( 999000))(cx-gui-do cx-set-real-entry-list \"Pressure Inlet*Frame3*Frame2(Thermal)*Table1*Table1*RealEntry2(Total Temperature)\" '( 2254.52))(cx-gui-do cx-activate-item \"Pressure Inlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Materials|Fluid|air\"))(cx-gui-do cx-set-real-entry-list \"Create/Edit Materials*RealEntry28\" '( 298))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*RealEntry28")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-real-entry-list \"Create/Edit Materials*RealEntry18\" '( 17.156))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton3(Change/Create)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=5)"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*Table4*Table2*PushButton2(Operating Conditions)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-real-entry-list \"Operating Conditions*Frame1*Table1(Pressure)*RealEntry2(Operating Pressure)\" '( 0))(cx-gui-do cx-activate-item \"Operating Conditions*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Models\"))(cx-gui-do cx-set-list-selections \"Models*Table1*List1(Models)\" '( 5))(cx-gui-do cx-activate-item \"Models*Table1*List1(Models)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Models*Table1*PushButton2(Edit)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Pressure-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Pressure-Based")(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Viscous (Standard k-e, Standard Wall Fn)"))(cx-gui-do cx-activate-item "Viscous Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Models|Species (Species Transport, Reactions)"))(cx-gui-do cx-set-toggle-button2 "Species Model*Table1*ToggleBox1(Model)*Off" #t)(cx-gui-do cx-activate-item "Species Model*Table1*ToggleBox1(Model)*Off")(cx-gui-do cx-activate-item "Species Model*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-activate-item "Create/Edit Materials*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=5)"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=5)"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions|inlet (pressure-inlet, id=5)"))(cx-gui-do cx-activate-item "Pressure Inlet*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 3))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 2))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*Table4*Table2*PushButton2(Operating Conditions)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Operating Conditions*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-real-entry-list \"Pressure Outlet*Frame3*Frame1(Momentum)*Table1*Table6*RealEntry2(Gauge Pressure)\" '( 54000))(cx-gui-do cx-set-real-entry-list \"Pressure Outlet*Frame3*Frame2(Thermal)*Table1*Table1*RealEntry2(Backflow Total Temperature)\" '( 240))(cx-gui-do cx-activate-item \"Pressure Outlet*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Pressure Outlet*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Dynamic Mesh"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Reference Values"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Reference Values"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Reference Values"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Reference Values\"))(cx-gui-do cx-set-list-selections \"Reference Values*DropDownList1(Compute from)\" '( 1))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Reference Values*DropDownList1(Compute from)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-real-entry-list \"Reference Values*Table2(Reference Values)*RealEntry10(Ratio of Specific Heats)\" '( 1.2578))(cx-gui-do cx-activate-item \"Reference Values*Table2(Reference Values)*RealEntry10(Ratio of Specific Heats)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Methods"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Methods"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Methods"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ButtonBox1(Type)*Density-Based")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Materials|Fluid|air"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Dynamic Mesh"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Reference Values"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Reference Values"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Reference Values"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Methods"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Methods"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Solution|Methods\"))(cx-gui-do cx-set-list-selections \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList5(Turbulent Kinetic Energy)\" '( 1))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList5(Turbulent Kinetic Energy)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList6(Turbulent Dissipation Rate)\" '( 1))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solution Methods*Table1*Table3(Spatial Discretization)*DropDownList6(Turbulent Dissipation Rate)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Controls"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Controls"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Controls"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Area-Weighted Average...")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "tke-area")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Standard Deviation...")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "tk-sd")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Area-Weighted Average...")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "temp-area")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 3))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)" #t)(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)")(cx-gui-do cx-set-toggle-button2 "Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)" #t)(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)")(cx-gui-do cx-activate-item "Surface Report Definition*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Report Definitions*Table1*List1(Report Definitions)\" '( 1))(cx-gui-do cx-activate-item \"Report Definitions*Table1*List1(Report Definitions)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton2(Edit)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "tke-sd")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Area-Weighted Average...")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList4\" '( 2))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList4")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "tdr-area")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Force ReportSubMenu*Force...")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Force Report Definition*Table1*TextEntry3(Name)" "force")(cx-gui-do cx-activate-item "Force Report Definition*Table1*TextEntry3(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Force Report Definition*Table1*Table2*List2(Wall Zones)\" '( 0))(cx-gui-do cx-activate-item \"Force Report Definition*Table1*Table2*List2(Wall Zones)\")(cx-gui-do cx-set-toggle-button2 \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Force Report Definition*Table1*Table1*Table5(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-activate-item \"Force Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))(cx-gui-do cx-set-toggle-button2 "Solution Initialization*Table1*ToggleBox3(Initialization Methods)*Standard Initialization" #t)(cx-gui-do cx-activate-item "Solution Initialization*Table1*ToggleBox3(Initialization Methods)*Standard Initialization")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Solution Initialization*Table1*DropDownList1(Compute from)\" '( 1))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solution Initialization*Table1*DropDownList1(Compute from)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solution Initialization*Table1*Frame8*PushButton1(Initialize)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Calculation Activities"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-set-integer-entry "Run Calculation*Table1*IntegerEntry10(Number of Iterations)" 3000)(cx-gui-do cx-activate-item "Run Calculation*Table1*IntegerEntry10(Number of Iterations)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton20(Data File Quantities)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8 12))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8 12 21))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8 12 21 35))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8 12 21 35 37))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8 12 21 35 36 37))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-set-list-selections \"Data File Quantities*Table3*List2(Additional Quantities)\" '( 0 3 4 8 12 21 35 36 37 53))(cx-gui-do cx-activate-item \"Data File Quantities*Table3*List2(Additional Quantities)\")(cx-gui-do cx-activate-item \"Data File Quantities*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Report Definitions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Force ReportSubMenu*Moment...")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Moment Report Definition*Table1*Table2*List2(Wall Zones)\" '( 0))(cx-gui-do cx-activate-item \"Moment Report Definition*Table1*Table2*List2(Wall Zones)\")(cx-gui-do cx-activate-item \"Moment Report Definition*PanelButtons*PushButton2(Cancel)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*Table1*ButtonBox3*PushButton1(New)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*Surface ReportSubMenu*Integral...")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)\" '( 4))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList3(Field Variable)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList1(Report Type)\" '( 6))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList1(Report Type)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*DropDownList4\" '( 1))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table2*DropDownList4")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-text-entry "Surface Report Definition*Table1*Table1*TextEntry1(Name)" "turb-intens-area")(cx-gui-do cx-activate-item "Surface Report Definition*Table1*Table1*TextEntry1(Name)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-list-selections \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table2*Table6*List1(Surfaces)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton1(Report File)\")(cx-gui-do cx-set-toggle-button2 \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\" #t)(cx-gui-do cx-activate-item \"Surface Report Definition*Table1*Table1*Table6(Create)*CheckButton2(Report Plot)\")(cx-gui-do cx-activate-item \"Surface Report Definition*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Report Definitions*PanelButtons*PushButton1(Close)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+Save(Overwrite=True)
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*FileMenu*Save Project")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton22(Calculate)")(cx-gui-do cx-activate-item "Error*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Cell Zone Conditions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Cell Zone Conditions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Cell Zone Conditions\"))(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 0))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions|interior-fff_main (interior, id=1)\"))(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))")
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 0))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 1))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 2))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 3))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 4))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*List2(Zone)\" '( 3))(cx-gui-do cx-activate-item \"Boundary Conditions*Table1*List2(Zone)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*Table4*ButtonBox1*PushButton1(Edit)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Symmetry*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*Table3*DropDownList2(Type)\" '( 0))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*DropDownList2(Type)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Axis*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton1(Check Case)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Case Check*PanelButtons*PushButton1(OK)")(cx-gui-do cx-activate-item "Question*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Case Check*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton22(Calculate)")(cx-gui-do cx-activate-item "Settings have changed!*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Error*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton20(Data File Quantities)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Data File Quantities*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|General"))(cx-gui-do cx-set-toggle-button2 "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Planar" #t)(cx-gui-do cx-activate-item "General*Table1*Table2(Solver)*ToggleBox6(2D Space)*Planar")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Methods"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Setup|Boundary Conditions"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-tree-selections \"NavigationPane*List_Tree1\" (list \"Setup|Boundary Conditions\"))(cx-gui-do cx-set-list-selections \"Boundary Conditions*Table1*Table3*DropDownList2(Type)\" '( 13))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Boundary Conditions*Table1*Table3*DropDownList2(Type)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Symmetry*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Initialization"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Solution Initialization*Table1*Frame8*PushButton1(Initialize)")(cx-gui-do cx-activate-item "Question*OK")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Solution|Run Calculation"))')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Run Calculation*Table1*PushButton22(Calculate)")(cx-use-window-id 7)')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Information*OK")')
+Save(Overwrite=True)
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*FileMenu*Save Project")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Results|Graphics|Contours"))(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Results|Graphics|Contours"))')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Results|Graphics|Contours"))(cx-gui-do cx-activate-item "NavigationPane*List_Tree1")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-list-tree-selections "NavigationPane*List_Tree1" (list "Results|Graphics|Contours"))')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Contours*Table1*Frame3*Table1*DropDownList1(Contours of)\" '( 2))")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Contours*Table1*Frame3*Table1*DropDownList1(Contours of)")')
+setup1.SendCommand(Command="(cx-gui-do cx-set-list-selections \"Contours*Table1*Frame3*Frame2*List2(Surfaces)\" '( 2 3 4))(cx-gui-do cx-activate-item \"Contours*Table1*Frame3*Frame2*List2(Surfaces)\")(cx-gui-do cx-set-list-selections \"Contours*Table1*Frame3*Frame2*List2(Surfaces)\" '( 1 2 3 4))(cx-gui-do cx-activate-item \"Contours*Table1*Frame3*Frame2*List2(Surfaces)\")(cx-gui-do cx-set-list-selections \"Contours*Table1*Frame3*Frame2*List2(Surfaces)\" '( 0 1 2 3 4))(cx-gui-do cx-activate-item \"Contours*Table1*Frame3*Frame2*List2(Surfaces)\")(cx-gui-do cx-activate-item \"Contours*PanelButtons*PushButton1(OK)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "Contours*Table1*Frame1*ToggleBox1(Options)*CheckButton8(Draw Mesh)" #t)(cx-gui-do cx-activate-item "Contours*Table1*Frame1*ToggleBox1(Options)*CheckButton8(Draw Mesh)")(cx-gui-do cx-activate-item "Mesh Display*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-set-toggle-button2 "Contours*Table1*Frame1*ToggleBox1(Options)*CheckButton8(Draw Mesh)" #f)(cx-gui-do cx-activate-item "Contours*Table1*Frame1*ToggleBox1(Options)*CheckButton8(Draw Mesh)")(cx-gui-do cx-activate-item "Contours*PanelButtons*PushButton2(Cancel)")')
+results1 = system1.GetContainer(ComponentName="Results")
+results1.Edit()
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.436662, 0.08, 0
+    Scale = 2.19932
+    Pan = 0, 0
+    Rotation Quaternion = 0, 0, 0, 1
+    
+  END
+
+END
+
+> update
+> autolegend plot=/CONTOUR:Contour 1, view=VIEW:View 1""")
+results1.SendCommand(Command="""CONTOUR:Contour 1
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Mach Number
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = inlet
+Max = 0.0
+Min = 0.0
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:Contour 1, view=/VIEW:View 1""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.436662, 0.08, 0
+    Scale = 2.19932
+    Pan = 0, 0
+    Rotation Quaternion = 0.011074, 0.0112651, 0.00297017, 0.999871
+    
+  END
+
+END
+
+> update
+CONTOUR:Contour 1
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Mach Number
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = symmetry 2
+Max = 0.0
+Min = 0.0
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.436662, 0.08, -5.82077e-11
+    Scale = 2.22786
+    Pan = 0.00214509, -0.0890214
+    Rotation Quaternion = 0, 0, 0, 1
+    
+  END
+
+END
+
+> update
+> autolegend plot=/CONTOUR:Contour 2, view=VIEW:View 1""")
+results1.SendCommand(Command="""CONTOUR:Contour 2
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Cell Reynolds Number
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = symmetry 1
+Max = 0.0
+Min = 0.0
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0,1
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:Contour 2, view=/VIEW:View 1""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>hide /CONTOUR:Contour 1, view=/VIEW:View 1""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.436662, 0.08, -5.82077e-11
+    Scale = 2.28356
+    Pan = 0.00214509, -0.0890214
+    Rotation Quaternion = 0, 0, 0, 1
+    
+  END
+
+END
+
+> update
+> autolegend plot=/CONTOUR:Contour 3, view=VIEW:View 1""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>hide /CONTOUR:Contour 2, view=/VIEW:View 1""")
+results1.SendCommand(Command="""CONTOUR:Contour 3
+Apply Instancing Transform = On
+Clip Contour = Off
+Colour Map = Default Colour Map
+Colour Scale = Linear
+Colour Variable = Turbulence Eddy Dissipation
+Colour Variable Boundary Values = Conservative
+Constant Contour Colour = Off
+Contour Range = Global
+Culling Mode = No Culling
+Domain List = /DOMAIN GROUP:All Domains
+Draw Contours = On
+Font = Sans Serif
+Fringe Fill = On
+Instancing Transform = /DEFAULT INSTANCE TRANSFORM:Default Transform
+Lighting = On
+Line Colour = 0, 0, 0
+Line Colour Mode = Default
+Line Width = 1
+Location List = symmetry 2
+Max = 0.0 [m^2 s^-3]
+Min = 0.0 [m^2 s^-3]
+Number of Contours = 100
+Show Numbers = Off
+Specular Lighting = On
+Surface Drawing = Smooth Shading
+Text Colour = 0, 0, 0
+Text Colour Mode = Default
+Text Height = 0.024
+Transparency = 0.0
+Use Face Values = Off
+Value List = 0 [m^2 s^-3],1 [m^2 s^-3]
+  OBJECT VIEW TRANSFORM:
+  Apply Reflection = Off
+  Apply Rotation = Off
+  Apply Scale = Off
+  Apply Translation = Off
+  Principal Axis = Z
+  Reflection Plane Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Axis From = 0 [m], 0 [m], 0 [m]
+  Rotation Axis To = 0 [m], 0 [m], 0 [m]
+  Rotation Axis Type = Principal Axis
+  Scale Vector = 1 , 1 , 1 
+  Translation Vector = 0 [m], 0 [m], 0 [m]
+  X = 0.0 [m]
+  Y = 0.0 [m]
+  Z = 0.0 [m]
+  END
+END""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:Contour 3, view=/VIEW:View 1""")
+results1.SendCommand(Command="""VIEW:View 1
+  Camera Mode = User Specified
+  CAMERA:
+    Option = Pivot Point and Quaternion
+    Pivot Point = 0.436662, 0.08, -5.82077e-11
+    Scale = 2.77741
+    Pan = 0.00214509, -0.0890214
+    Rotation Quaternion = 0, 0, 0, 1
+    
+  END
+
+END
+
+> update
+HARDCOPY:
+Antialiasing = On
+Hardcopy Filename = C:/Users/Jason/ProjectCaelus/Simulations/Aphlex 1A Flow Test 1_files/TED_contour.png
+Hardcopy Format = png
+Hardcopy Tolerance = 0.0001
+Image Height = 600
+Image Scale = 100
+Image Width = 600
+JPEG Image Quality = 80
+Screen Capture = Off
+Use Screen Size = On
+White Background = On
+END
+>print""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>hide /CONTOUR:Contour 3, view=/VIEW:View 1""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:Contour 2, view=/VIEW:View 1""")
+results1.SendCommand(Command="""HARDCOPY:
+Antialiasing = On
+Hardcopy Filename = C:/Users/Jason/ProjectCaelus/Simulations/Aphlex 1A Flow Test 1_files/reynolds_contour.png
+Hardcopy Format = png
+Hardcopy Tolerance = 0.0001
+Image Height = 600
+Image Scale = 100
+Image Width = 600
+JPEG Image Quality = 80
+Screen Capture = Off
+Use Screen Size = On
+White Background = On
+END
+>print""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:Contour 3, view=/VIEW:View 1""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>hide /CONTOUR:Contour 2, view=/VIEW:View 1""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>show /CONTOUR:Contour 1, view=/VIEW:View 1""")
+results1.SendCommand(Command="""# Sending visibility action from ViewUtilities
+>hide /CONTOUR:Contour 3, view=/VIEW:View 1""")
+results1.SendCommand(Command="""HARDCOPY:
+Antialiasing = On
+Hardcopy Filename = C:/Users/Jason/ProjectCaelus/Simulations/Aphlex 1A Flow Test 1_files/mach_contour.png
+Hardcopy Format = png
+Hardcopy Tolerance = 0.0001
+Image Height = 600
+Image Scale = 100
+Image Width = 600
+JPEG Image Quality = 80
+Screen Capture = Off
+Use Screen Size = On
+White Background = On
+END
+>print""")
+results1.SendCommand(Command="> report showItem=/REPORT/SOLUTION SUMMARY OPTIONS")
+Save(Overwrite=True)
+results1.Exit()
+cfdResults1 = results1.GetCFDResults()
+cfdResults1.GenerateReport = True
+resultsComponent1 = system1.GetComponent(Name="Results")
+resultsComponent1.Update(AllDependencies=True)
+ExportReport(FilePath="C:/Users/Jason/ProjectCaelus/Simulations/Aphlex 1A Flow Test 1_files/Aphlex 1A Flow Test 1_report.html")
+setup1.SendCommand(Command="(cx-use-window-id 2)(cx-use-window-id 2)(cx-use-window-id 2)(cx-use-window-id 2)")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "ToolBar*View Tools*savepicture")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Save Picture*PanelButtons*PushButton1(OK)\")(cx-gui-do cx-set-file-dialog-entries \"Select File\" '( \"C:/Users/Jason/ProjectCaelus/Simulations/Aphlex 1A Flow Test 1_files/tke_plot\") \"Hardcopy Files (*.jpg)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "ToolBar*View Tools*savepicture")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Save Picture*PanelButtons*PushButton1(OK)\")(cx-gui-do cx-set-file-dialog-entries \"Select File\" '( \"tke_sd_plot.jpg\") \"Hardcopy Files (*.jpg)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton1(OK)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command="(cx-use-window-id 4)")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "ToolBar*View Tools*savepicture")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Save Picture*PanelButtons*PushButton1(OK)\")(cx-gui-do cx-set-file-dialog-entries \"Select File\" '( \"temp_plot.jpg\") \"Hardcopy Files (*.jpg)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command="(cx-use-window-id 5)")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "ToolBar*View Tools*savepicture")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Save Picture*PanelButtons*PushButton1(OK)\")(cx-gui-do cx-set-file-dialog-entries \"Select File\" '( \"tdr_plot.jpg\") \"Hardcopy Files (*.jpg)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "ToolBar*View Tools*savepicture")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Save Picture*PanelButtons*PushButton1(OK)\")(cx-gui-do cx-set-file-dialog-entries \"Select File\" '( \"force_plot.jpg\") \"Hardcopy Files (*.jpg)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command="(cx-use-window-id 7)")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "ToolBar*View Tools*savepicture")')
+setup1.SendCommand(Command="(cx-gui-do cx-activate-item \"Save Picture*PanelButtons*PushButton1(OK)\")(cx-gui-do cx-set-file-dialog-entries \"Select File\" '( \"trub_intens_plot.jpg\") \"Hardcopy Files (*.jpg)\")")
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "Save Picture*PanelButtons*PushButton2(Cancel)")')
+setup1.SendCommand(Command='(cx-gui-do cx-activate-item "MenuBar*FileMenu*Close Fluent")')
+Save(Overwrite=True)
